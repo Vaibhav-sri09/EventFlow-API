@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Events - EventHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">EventHub</a>
+            <div class="nav-links" id="nav-links">
+                <a href="events.html" class="active">Browse Events</a>
+                <a href="admin.html" id="nav-admin-link" style="display: none;">Admin Dashboard</a>
+                <span id="user-display"></span>
+                <a href="login.html" id="nav-login-btn">Login</a>
+                <button id="logout-btn" class="btn btn-sm btn-outline" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <header class="section-header">
+            <div>
+                <h2>Available Events</h2>
+                <p>Find and register for upcoming events</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search events...">
+                <button id="search-btn" class="btn btn-primary">Search</button>
+            </div>
+        </header>
+
+        <div id="event-message" class="message-box" style="display: none;"></div>
+
+        <div id="events-grid" class="events-grid">
+            <p class="loading-text">Loading events...</p>
+        </div>
+
+        <div class="pagination" id="pagination-controls">
+            <button id="prev-page-btn" class="btn btn-secondary" disabled>&laquo; Previous</button>
+            <span id="page-indicator">Page 1</span>
+            <button id="next-page-btn" class="btn btn-secondary" disabled>Next &raquo;</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

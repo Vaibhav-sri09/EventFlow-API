@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EventHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">EventHub Admin</a>
+            <div class="nav-links" id="nav-links">
+                <a href="events.html">Browse Events</a>
+                <a href="admin.html" class="active">Admin Dashboard</a>
+                <span id="user-display"></span>
+                <button id="logout-btn" class="btn btn-sm btn-outline">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <!-- Access Denied Message (shown to non-admins) -->
+        <div id="admin-access-denied" class="card" style="display: none; text-align: center; margin-top: 2rem;">
+            <h2>Access Denied</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">You must be logged in as an <strong>admin</strong> to access this page.</p>
+            <a href="events.html" class="btn btn-primary" style="margin-top: 1rem;">Go to Events</a>
+        </div>
+
+        <!-- Admin Content (shown to admins only) -->
+        <div id="admin-content" style="display: none;">
+            <div id="admin-message" class="message-box" style="display: none;"></div>
+
+            <!-- Create Event Card -->
+            <section class="card" style="margin-bottom: 2rem;">
+                <h3>Create New Event</h3>
+                <form id="create-event-form" style="margin-top: 1rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="event-title">Event Title</label>
+                            <input type="text" id="event-title" required placeholder="e.g. Python Workshop">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Date</label>
+                            <input type="date" id="event-date" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="event-location">Location</label>
+                            <input type="text" id="event-location" required placeholder="e.g. Auditorium A">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-capacity">Capacity</label>
+                            <input type="number" id="event-capacity" required min="1" placeholder="e.g. 50">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="event-desc">Description</label>
+                        <textarea id="event-desc" rows="2" placeholder="Brief event description"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">+ Create Event</button>
+                </form>
+            </section>
+
+            <!-- Managed Events Table -->
+            <section class="card">
+                <h3>Managed Events</h3>
+                <div class="table-responsive">
+                    <table class="table" id="admin-events-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Capacity</th>
+                                <th>Registered</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-events-body">
+                            <tr><td colspan="7">Loading events...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
