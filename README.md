@@ -1,79 +1,133 @@
-# Event Registration API
+# EventFlow API
 
-A beginner-friendly full-stack application for managing and registering for events. Built with **Python Flask**, **SQLite**, **HTML/CSS**, and vanilla **JavaScript `fetch()`**.
+A full-stack event registration system built with **Python, Flask, SQLite, HTML, CSS, and JavaScript**. This project demonstrates REST API development, JWT authentication, role-based access control, and concurrency-safe event registration.
 
----
+## ✨ Features
+
+* **User Authentication:** Registration and login with securely hashed passwords.
+* **JWT Authentication:** Short-lived access tokens and a refresh token flow.
+* **Role-Based Access Control:** Separate permissions for members and administrators.
+* **Event Management:** Create, browse, search, and manage events.
+* **Event Registration:** Register for events and cancel registrations.
+* **Capacity Management:** Prevents registrations from exceeding available seats.
+* **Search & Pagination:** Filter events and browse results page by page.
+* **Concurrency Safety:** Uses SQLite transactions and atomic conditional updates to help prevent overbooking.
+* **Automated Testing:** 21 tests covering authentication, authorization, and event registration.
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose                                     |
+| ---------- | ------------------------------------------- |
+| Python     | Backend programming                         |
+| Flask      | REST API development                        |
+| SQLite     | Database management                         |
+| JWT        | Token-based authentication                  |
+| HTML & CSS | Frontend structure and styling              |
+| JavaScript | Frontend interactions and API communication |
+| Pytest     | Automated testing                           |
 
 ## 📁 Project Structure
 
 ```text
-event-registration-api/
-│
+EventFlow-API/
 ├── backend/
-│   ├── app.py          # Flask REST API endpoints (Auth, Events, Registrations)
-│   ├── database.py     # SQLite connection helper & schema creation
-│   ├── auth.py         # Password hashing & JWT (Access + Refresh) auth
-│   └── seed.py         # Seed script for initial admin/member accounts and sample events
-│
+│   ├── app.py
+│   ├── auth.py
+│   ├── database.py
+│   └── seed.py
 ├── frontend/
-│   ├── index.html      # Landing / Home page
-│   ├── login.html      # User login and registration page
-│   ├── events.html     # Browse, search, and register for events
-│   ├── admin.html      # Admin dashboard for creating & managing events
-│   ├── style.css       # Clean, modern CSS styling
-│   └── script.js       # Minimal vanilla JavaScript using fetch() for API communication
-│
+│   ├── index.html
+│   ├── login.html
+│   ├── events.html
+│   ├── admin.html
+│   ├── style.css
+│   └── script.js
 ├── tests/
-│   └── test_api.py     # 21 automated pytest test cases covering all requirements
-│
+│   └── test_api.py
 ├── database/
-│   └── app.db          # SQLite database file
-│
-├── requirements.txt    # Python package dependencies
-└── README.md           # Project documentation and guide
+│   └── app.db
+├── requirements.txt
+└── README.md
 ```
 
----
+## 🚀 Getting Started
 
-## 🚀 Quick Start Guide
+### Prerequisites
 
-### 1. Install Dependencies
-```powershell
+* Python installed
+* Git installed
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Vaibhav-sri09/EventFlow-API.git
+cd EventFlow-API
+```
+
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Initialize & Seed the Database
-```powershell
+### 3. Initialize the database
+
+```bash
 python backend/seed.py
 ```
-*Creates initial database and default accounts:*
-* **Admin**: `username: admin`, `password: admin123`
-* **Member**: `username: member`, `password: member123`
 
-### 3. Start the Backend API
-```powershell
+This initializes the database and creates the default accounts configured in the seed script.
+
+### 4. Start the backend
+
+```bash
 python backend/app.py
 ```
-*The API runs at `http://127.0.0.1:5000`.*
 
-### 4. Open the Frontend
-Open `frontend/index.html` (or `frontend/login.html`) directly in any web browser.
+The API runs at `http://127.0.0.1:5000`.
 
----
+### 5. Open the frontend
 
-## 🧪 Running Automated Tests
+Open `frontend/index.html` in your browser. Ensure the backend is running and the frontend's API URL matches your local server.
 
-Run the complete test suite with pytest:
-```powershell
+## 🧪 Running Tests
+
+Run the automated test suite from the project root:
+
+```bash
 python -m pytest tests/test_api.py -v
 ```
 
-**21 passed test cases**, verifying:
-* User registration, password hashing with Werkzeug, and duplicate prevention
-* Public admin creation blocking (403 Forbidden)
-* Login returning short-lived access token (15 min) and refresh token (7 days)
-* Token refresh flow (`POST /auth/refresh`)
-* Role-based access control (Admin CRUD vs Member viewing)
-* Event pagination (`?page=1&limit=10`) and search filtering (`?search=keyword`)
-* Event seat registration & cancellation
-* Concurrency safety under parallel requests using atomic conditional updates and SQLite transactions
+The test suite contains **21 automated tests** covering:
+
+* User registration and password hashing
+* Login and token validation
+* Access token expiration and refresh flow
+* Role-based access restrictions
+* Duplicate registration prevention
+* Event registration and cancellation
+* Pagination and search
+* Registration capacity and concurrent requests
+
+## 🔐 Key Backend Concepts
+
+* **Authentication vs Authorization:** Verifying user identity and controlling access to protected operations.
+* **Relational Data:** Connecting events and registrations through database relationships.
+* **Transactions:** Maintaining database consistency during registration.
+* **Concurrency Handling:** Preventing capacity violations when requests overlap.
+* **API Testing:** Checking expected behavior and handling invalid requests.
+
+## 🎯 What I Learned
+
+Building this project helped me gain practical experience in designing REST APIs, connecting a frontend to a backend, implementing authentication, managing relational data, and testing important edge cases.
+
+## 👨‍💻 Author
+
+**Vaibhav Sri Sannidh**
+
+* GitHub: [@Vaibhav-sri09](https://github.com/Vaibhav-sri09)
+* Repository: [EventFlow-API](https://github.com/Vaibhav-sri09/EventFlow-API)
+
+---
+
+*Built as a hands-on project to practise backend development and API design.*
